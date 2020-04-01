@@ -40,12 +40,12 @@ You are provided with daily historical sales data. The task is to forecast the t
 
 ## I. Summary
 - Main methods I used for this competition that provides the desired Leaderboard score: LightGBM
-- Methods I tried to implement but resulted in worse RMSE: XGBoost, Neural Network with categorical embedding, Stacking (both simple averaging and metal models such as Linear Regression and shallow random forest)
+- Methods I tried to implement but resulted in worse RMSE: XGBoos, Stacking (both simple averaging and metal models such as Linear Regression and shallow random forest)
 - The most important features are lag features of previous months, especially the ‘item_cnt_day’ lag features. Some of them, which can be found in my lag dataset, are 
   - **target_lag_1,target_lag_2**: item_cnt_day of each shop – item pair of previous month and previous two months
   - **item_block_target_mean_lag_1, item_block_target_sum_lag_1**: sum and mean of item_cnt_day per item of previous month
 Important features are measured from LightGBM model
-- Tools I used in this competition are: numpy, pandas, sklearn, XGBoost GPU, LightGBM, and fast.ai libraries (running Pytorch)
+- Tools I used in this competition are: numpy, pandas, sklearn, XGBoost GPU, LightGBM (running Pytorch)
 - All models are tuned on a linux server with Intel i5 processor, 16GB RAM, NVIDIA 1080 GPU. Tuning models took about 8 to 10 hours, and training on the whole dataset took <=5 minutes
 
 
@@ -122,10 +122,6 @@ For the record, the first models results .812 CV score (in hyperopt) and .926 LB
 
 You can find more information about this in [XGB notebook](xgb_tuning.ipynb). Prediction for the model with max_depth tuned are named ‘tuned_xgb_basicfeatures_6folds_8126.csv’ and the other one are ‘tuned_xgb_basicfeatures_6folds_8136’
 
-### 3. Neural Network with categorical embedding
-This is by far the most time-consuming models, and I don’t have good results for this (1.001 on LB). I also made a fatal mistake while clipping the results due to late night coding, so I won’t discuss much about this. The idea is to separate all numerical features and categorical features, and apply embedding layers for each of those categorical features (i.e map each unique item_id to a vectors of some length). These embedding layers and numerical features are fed into hidden layers of Neural network.
-
-This method is used to get the 3rd place in Kaggle Rossman competition. With Fast.ai library, it is easy to implement this approach, but it doesn’t seem to work well with this dataset.
 
 ## VI. Ensembling
 
@@ -143,7 +139,6 @@ More information can be found in [Ensembling notebook](ensembling.ipynb)
 ## VII. Improvement:
 
 Few things that can be improved are:
-- Re-implement fast.ai neural net with categorical embedding
 - Implement neural net WITHOUT categorical embedding
 - Generate more feature related to holiday, such as: differences between current month and holiday month.
 - Translate item name to English and perform sentiment analysis on item name

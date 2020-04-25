@@ -1,31 +1,45 @@
 # Kaggle-Predicting-Future-Sales
-Kaggle Predicting Future Sales- Playground Prediction Competition
 
-## Kaggle Competition: [Predict Future Sales](https://www.kaggle.com/c/competitive-data-science-predict-future-sales)
-In this competition you will work with a challenging time-series dataset consisting of daily sales data, kindly provided by one of the largest Russian software firms - 1C Company. 
-We are asking you to predict total sales for every product and store in the next month. By solving this competition you will be able to apply and enhance your data science skills.
+[![Makes people smile](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://github.com/iamsivab)
+## Kaggle-Predicting-Future-Sales
+
+[![Generic badge](https://img.shields.io/badge/Datascience-Beginners-Red.svg?style=for-the-badge)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) 
+[![Generic badge](https://img.shields.io/badge/LinkedIn-Connect-blue.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iamsivab/) [![Generic badge](https://img.shields.io/badge/Python-Language-blue.svg?style=for-the-badge)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
+
+#### The goal of this project is to [#DataScience](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) from the various travel insurance-related attributes.
+
+[![GitHub repo size](https://img.shields.io/github/repo-size/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=github&style=social)](https://github.com/iamsivab) [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=git&style=social)](https://github.com/iamsivab/)[![GitHub top language](https://img.shields.io/github/languages/top/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=python&style=social)](https://github.com/iamsivab)
+
+#### Few popular hashtags - 
+### `#DataScience` `#Guide for Beginners` `#`
+### `#patternlearning` `#BagofWords` `#textanalytics`
+
+### Motivation
+In this competition I was working with a challenging time-series dataset consisting of daily sales data, kindly provided by one of the largest Russian software firms - 1C Company. 
+To predict total sales for every product and store in the next month. By solving this competition I was able to apply and enhance your data science skills.
 
 This documentation contains general information about my approach and technical information about Kaggle’s Predict Future Sales competition
 
-# Predict Future Sales
+### Steps involved in this project
+### Kaggle Predicting Future Sales- Playground Prediction Competition
 
-## Overview
-
-## Data Description
+### Kaggle Competition: [Predict Future Sales](https://www.kaggle.com/c/competitive-data-science-predict-future-sales)
+### Data Description
 
 You are provided with daily historical sales data. The task is to forecast the total amount of products sold in every shop for the test set. Note that the list of shops and products slightly changes every month. Creating a robust model that can handle such situations is part of the challenge.
 
 **File descriptions**
-
+```
 - sales_train.csv - the training set. Daily historical data from January 2013 to October 2015.
 - test.csv - the test set. You need to forecast the sales for these shops and products for November 2015.
 - sample_submission.csv - a sample submission file in the correct format.
 - items.csv - supplemental information about the items/products.
 - item_categories.csv  - supplemental information about the items categories.
 - shops.csv- supplemental information about the shops.
+```
 
 **Data fields**
-
+```
 - ID - an Id that represents a (Shop, Item) tuple within the test set
 - shop_id - unique identifier of a shop
 - item_id - unique identifier of a product
@@ -37,7 +51,7 @@ You are provided with daily historical sales data. The task is to forecast the t
 - item_name - name of item
 - shop_name - name of shop
 - item_category_name - name of item category
-
+```
 ## I. Summary
 - Main methods I used for this competition that provides the desired Leaderboard score: LightGBM
 - Methods I tried to implement but resulted in worse RMSE: XGBoos, Stacking (both simple averaging and metal models such as Linear Regression and shallow random forest)
@@ -48,6 +62,7 @@ Important features are measured from LightGBM model
 - Tools I used in this competition are: numpy, pandas, sklearn, XGBoost GPU, LightGBM (running Pytorch)
 - All models are tuned on a linux server with Intel i5 processor, 16GB RAM, NVIDIA 1080 GPU. Tuning models took about 8 to 10 hours, and training on the whole dataset took <=5 minutes
 
+[![Made with Python](https://forthebadge.com/images/badges/made-with-python.svg)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) [![Made with love](https://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/iamsivab/) [![ForTheBadge built-with-swag](http://ForTheBadge.com/images/badges/built-with-swag.svg)](https://www.linkedin.com/in/iamsivab/)
 
 ## II. Exploratory Data Analysis
 More information can be found in [EDA notebook](EDA.ipynb)
@@ -88,10 +103,11 @@ As mentioned above, I look up few Russia national holidays and created few 5 mor
 After all this steps, you should have a pickle file name in ‘data‘ directory: 'new_sales_lag_after12.pickle'. This is the main file I used for training models
 
 
-## IV. Cross validations
+### IV. Cross validations
 Since this is time series so I have to pre-define which data can be used for train and test. I have a function called get_cv_idxs in utils.py that will return a list of tuples for cross validation. I decide to use 6 folds, from date_block_num 28 to 33, and luckily this CV score is consistent to leaderboard score.
 
 CV indices can be retrieved from this custom function:
+
 ```
 cv = get_cv_idxs(dataframe,28,33) 
 # dataframe must contain date_block_num features
@@ -99,7 +115,7 @@ cv = get_cv_idxs(dataframe,28,33)
 
 Results from this function can be passed to sklearn GridSearchCV.
 
-## V. Training methods:
+### V. Training methods:
 
 ### 1. LightGBM
 LightGBM is tuned using hyperopt, then manually tune with GridSearchCV to get the optimal result. One interesting thing I found: when tuning the size of the tree, it’s better to tune min_data_in_leaf instead of max_depth. This means to let the tree grows freely until the condition for min_data_in_leaf is met. I believe this will allow deeper logic to develop without overfitting too much. Colsample_bytree and subsample are also used to control overfitting. And I keep the learning rate small (0.03) throughout tuning.
@@ -120,6 +136,26 @@ Therefore, I pick 2 models: one with max_depth tuned, and one without max_depth 
 
 For the record, the first models results .812 CV score (in hyperopt) and .926 LB score, and second models results in .813 CV score (hyperopt) and .927 LB score. Either way, both are worse than LGB model 
 
+``` python 
+space = {
+    #'n_estimators': hp.quniform('n_estimators', 50, 500, 5),
+#     'max_depth': hp.choice('max_depth', np.arange(5, 10, dtype=int)),
+    'subsample': hp.quniform('subsample', 0.7, 0.9, 0.05),
+    'colsample_bytree': hp.quniform('colsample_bytree', 0.7, 0.9, 0.05),
+    'gamma': hp.quniform('gamma', 0, 1, 0.05),
+    'max_leaf_nodes': hp.choice('max_leaf_nodes', np.arange(100,140, dtype=int)),
+    'min_child_weight': hp.choice('min_child_weight', np.arange(100,140, dtype=int)),
+    'learning_rate': 0.03,
+    'eval_metric': 'rmse',
+    'objective': 'reg:linear' , 
+    'seed': 1204,'tree_method':'gpu_hist'
+}
+
+```
+best_hyperparams = optimize(space,max_evals=200)
+print("The best hyperparameters are: ")
+print(best_hyperparams)
+
 You can find more information about this in [XGB notebook](xgb_tuning.ipynb). Prediction for the model with max_depth tuned are named ‘tuned_xgb_basicfeatures_6folds_8126.csv’ and the other one are ‘tuned_xgb_basicfeatures_6folds_8136’
 
 
@@ -134,6 +170,16 @@ From here I try few ensembling methods
 
 All of them results in RMSE score that is slightly more than the LightGBM best model, so LightGBM still outperforms them.
 
+``` python
+X,y = get_X_y_ensembling(all_oof_df)
+params={'alpha': 0.0, 'fit_intercept': False, 'solver': 'sag','random_state':1402}
+lr = Ridge(**params)
+lr.fit(X,y)
+test_pred =  lr.predict(test_df)
+pd.Series(test_pred).describe()
+get_submission(test_pred,'ensembling_ridge');
+```
+
 More information can be found in [Ensembling notebook](ensembling.ipynb)
 
 ## VII. Improvement:
@@ -143,3 +189,84 @@ Few things that can be improved are:
 - Generate more feature related to holiday, such as: differences between current month and holiday month.
 - Translate item name to English and perform sentiment analysis on item name
 - Use only subset of those meta features for ensembling
+
+
+### Libraries Used
+
+![Ipynb](https://img.shields.io/badge/Python-datetime-blue.svg?style=flat&logo=python&logoColor=white) 
+![Ipynb](https://img.shields.io/badge/Python-pandas-blue.svg?style=flat&logo=python&logoColor=white)
+![Ipynb](https://img.shields.io/badge/Python-numpy-blue.svg?style=flat&logo=python&logoColor=white) 
+![Ipynb](https://img.shields.io/badge/Python-matplotlib-blue.svg?style=flat&logo=python&logoColor=white) 
+![Ipynb](https://img.shields.io/badge/Python-seaborn-blue.svg?style=flat&logo=python&logoColor=white)
+![Ipynb](https://img.shields.io/badge/Python-scipy-blue.svg?style=flat&logo=python&logoColor=white) 
+![Ipynb](https://img.shields.io/badge/Python-sklearn-blue.svg?style=flat&logo=python&logoColor=white) 
+
+
+### Installation
+
+- Install **datetime** using pip command: `from datetime import datetime`
+- Install **pandas** using pip command: `import pandas as pd`
+- Install **numpy** using pip command: `import numpy as np`
+- Install **matplotlib** using pip command: `import matplotlib`
+- Install **matplotlib.pyplot** using pip command: `import matplotlib.pyplot as plt`
+- Install **seaborn** using pip command: `import seaborn as sns`
+- Install **os** using pip command: `import os`
+- Install **scipy** using pip command: `from scipy import sparse`
+- Install **scipy.sparse** using pip command: `from scipy.sparse import csr_matrix`
+- Install **sklearn.decomposition** using pip command: `from sklearn.decomposition import TruncatedSVD`
+- Install **sklearn.metrics.pairwise** using pip command: `from sklearn.metrics.pairwise import cosine_similarity`
+- Install **itertools** using pip command: `from itertools import product`
+
+
+### How to run?
+
+[![R Studio](https://img.shields.io/badge/R-clean_data.R.-lightgrey.svg?logo=R&style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/tree/master/src)
+
+
+### Project Reports
+
+[![report](https://img.shields.io/static/v1.svg?label=Project&message=Report&logo=microsoft-word&style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/)
+
+- [Download](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/') for the report.
+
+ 
+### Related Work
+
+[![Sales Prediction](https://img.shields.io/static/v1.svg?label=Sales&message=Prediction&color=lightgray&logo=linkedin&style=social&colorA=critical)](https://www.linkedin.com/in/iamsivab/) [![GitHub top language](https://img.shields.io/github/languages/top/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=php&style=social)](https://github.com/iamsivab/)
+
+[Sales Prediction](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) - A Detailed Report on the Analysis
+
+
+### Contributing
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/pulls) [![GitHub issues](https://img.shields.io/github/issues/iamsivab/Kaggle-Predicting-Future-Sales?logo=github)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/issues) ![GitHub pull requests](https://img.shields.io/github/issues-pr/viamsivab/Kaggle-Predicting-Future-Sales?color=blue&logo=github) 
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/y/iamsivab/Kaggle-Predicting-Future-Sales?logo=github)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/)
+
+- Clone [this](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/) repository: 
+
+```bash
+git clone https://github.com/iamsivab/Kaggle-Predicting-Future-Sales.git
+```
+
+- Check out any issue from [here](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/issues).
+
+- Make changes and send [Pull Request](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/pull).
+ 
+### Need help?
+
+[![Facebook](https://img.shields.io/static/v1.svg?label=follow&message=@iamsivab&color=9cf&logo=facebook&style=flat&logoColor=white&colorA=informational)](https://www.facebook.com/iamsivab)  [![Instagram](https://img.shields.io/static/v1.svg?label=follow&message=@iamsivab&color=grey&logo=instagram&style=flat&logoColor=white&colorA=critical)](https://www.instagram.com/iamsivab/) [![LinkedIn](https://img.shields.io/static/v1.svg?label=connect&message=@iamsivab&color=success&logo=linkedin&style=flat&logoColor=white&colorA=blue)](https://www.linkedin.com/in/iamsivab/)
+
+:email: Feel free to contact me @ [balasiva001@gmail.com](https://mail.google.com/mail/)
+
+[![GMAIL](https://img.shields.io/static/v1.svg?label=send&message=balasiva001@gmail.com&color=red&logo=gmail&style=social)](https://www.github.com/iamsivab) [![Twitter Follow](https://img.shields.io/twitter/follow/iamsivab?style=social)](https://twitter.com/iamsivab)
+
+
+### License
+
+MIT &copy; [Sivasubramanian](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/blob/master/LICENSE)
+
+[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/0)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/0)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/1)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/1)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/2)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/2)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/3)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/3)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/4)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/4)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/5)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/5)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/6)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/6)[![](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/images/7)](https://sourcerer.io/fame/iamsivab/iamsivab/Kaggle-Predicting-Future-Sales/links/7)
+
+
+[![GitHub license](https://img.shields.io/github/license/iamsivab/Kaggle-Predicting-Future-Sales.svg?style=social&logo=github)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/blob/master/LICENSE) 
+[![GitHub forks](https://img.shields.io/github/forks/iamsivab/Kaggle-Predicting-Future-Sales.svg?style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/network) [![GitHub stars](https://img.shields.io/github/stars/iamsivab/Kaggle-Predicting-Future-Sales.svg?style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/stargazers) [![GitHub followers](https://img.shields.io/github/followers/iamsivab.svg?label=Follow&style=social)](https://github.com/iamsivab/)

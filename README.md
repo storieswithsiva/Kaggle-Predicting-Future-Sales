@@ -6,13 +6,13 @@
 [![Generic badge](https://img.shields.io/badge/Datascience-Beginners-Red.svg?style=for-the-badge)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) 
 [![Generic badge](https://img.shields.io/badge/LinkedIn-Connect-blue.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iamsivab/) [![Generic badge](https://img.shields.io/badge/Python-Language-blue.svg?style=for-the-badge)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
 
-#### The goal of this project is to [#DataScience](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) from the various travel insurance-related attributes.
+#### The goal of this project is to Predict the Future Sales [#DataScience](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) for the challenging time-series dataset consisting of daily sales data,
 
 [![GitHub repo size](https://img.shields.io/github/repo-size/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=github&style=social)](https://github.com/iamsivab) [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=git&style=social)](https://github.com/iamsivab/)[![GitHub top language](https://img.shields.io/github/languages/top/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=python&style=social)](https://github.com/iamsivab)
 
 #### Few popular hashtags - 
-### `#DataScience` `#Guide for Beginners` `#`
-### `#patternlearning` `#BagofWords` `#textanalytics`
+### `#Sales Prediction` `#Time Series` `#Ensembling`
+### `#XGBoost` `#Parameter Tuning` `#LightGBM`
 
 ### Motivation
 In this competition I was working with a challenging time-series dataset consisting of daily sales data, kindly provided by one of the largest Russian software firms - 1C Company. 
@@ -220,7 +220,7 @@ Few things that can be improved are:
 
 ### How to run?
 
-[![R Studio](https://img.shields.io/badge/R-clean_data.R.-lightgrey.svg?logo=R&style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales/tree/master/src)
+[![Ipynb](https://img.shields.io/badge/R-clean_data.R.-lightgrey.svg?logo=python&style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales)
 
 
 ### Project Reports

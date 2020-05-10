@@ -220,7 +220,7 @@ Few things that can be improved are:
 
 ### How to run?
 
-[![Ipynb](https://img.shields.io/badge/R-clean_data.R.-lightgrey.svg?logo=python&style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales)
+[![Ipynb](https://img.shields.io/badge/Prediction-Sales.Python-lightgrey.svg?logo=python&style=social)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales)
 
 
 ### Project Reports
@@ -232,7 +232,7 @@ Few things that can be improved are:
  
 ### Related Work
 
-[![Sales Prediction](https://img.shields.io/static/v1.svg?label=Sales&message=Prediction&color=lightgray&logo=linkedin&style=social&colorA=critical)](https://www.linkedin.com/in/iamsivab/) [![GitHub top language](https://img.shields.io/github/languages/top/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=php&style=social)](https://github.com/iamsivab/)
+[![Sales Prediction](https://img.shields.io/static/v1.svg?label=Sales&message=Prediction&color=lightgray&logo=python&style=social&colorA=critical)](https://www.linkedin.com/in/iamsivab/) [![GitHub top language](https://img.shields.io/github/languages/top/iamsivab/Kaggle-Predicting-Future-Sales.svg?logo=php&style=social)](https://github.com/iamsivab/)
 
 [Sales Prediction](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) - A Detailed Report on the Analysis
 

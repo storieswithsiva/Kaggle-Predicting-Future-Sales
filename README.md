@@ -2,7 +2,8 @@
 
 [![Makes people smile](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://github.com/iamsivab)
 
-[![HitCount](http://hits.dwyl.com/iamsivab/Kaggle-Predicting-Future-Sales.svg)](http://hits.dwyl.com/iamsivab/Kaggle-Predicting-Future-Sales)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fiamsivab%2FKaggle-Predicting-Future-Sales)](https://hits.seeyoufarm.com)
+
 ## Kaggle-Predicting-Future-Sales
 
 [![Generic badge](https://img.shields.io/badge/Datascience-Beginners-Red.svg?style=for-the-badge)](https://github.com/iamsivab/Kaggle-Predicting-Future-Sales) 
